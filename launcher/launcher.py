@@ -64,7 +64,7 @@ def main():
     #run_hdfs()
     #install_config_repo(CONFIG_REPO)
     #build_code() # TBD
-    run_config_server(CONFIG_REPO, LOGS_DIR)
+    #run_config_server(CONFIG_REPO, LOGS_DIR)
     logger.info('Install done')
 
 if __name__== '__main__':
