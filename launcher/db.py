@@ -52,12 +52,13 @@ SQL_SCRIPTS = [  # These are in a paritcular sequence
     'mosip_master/mosip_master_grants.sql',
     'mosip_master/mosip_master_ddl_deploy.sql',
     'mosip_master/mosip_master_dml_deploy.sql',
-
-    'mosip_pmp/mosip_role_common.sql',
-    'mosip_pmp/mosip_role_pmpuser.sql',
-    'mosip_pmp/mosip_pmp_db.sql',
-    'mosip_pmp/mosip_pmp_grants.sql',
-    'mosip_pmp/mosip_pmp_ddl_deploy.sql',
+  
+    # TODO: Not in version 0.9.0
+    #'mosip_pmp/mosip_role_common.sql',
+    #'mosip_pmp/mosip_role_pmpuser.sql',
+    #'mosip_pmp/mosip_pmp_db.sql',
+    #'mosip_pmp/mosip_pmp_grants.sql',
+    #'mosip_pmp/mosip_pmp_ddl_deploy.sql',
 
     'mosip_prereg/mosip_role_common.sql',
     'mosip_prereg/mosip_role_prereguser.sql',
@@ -76,7 +77,7 @@ SQL_SCRIPTS = [  # These are in a paritcular sequence
     'mosip_regprc/mosip_regprc_db.sql',
     'mosip_regprc/mosip_regprc_grants.sql',
     'mosip_regprc/mosip_regprc_ddl_deploy.sql',
-    'mosip_regprc/mosip_regprc_dml_deploy.sql'
+    #'mosip_regprc/mosip_regprc_dml_deploy.sql' # TODO: not in 0.9.0 
 ]
 def install_postgres():
     logger.info('Installing postgres')
@@ -86,6 +87,7 @@ def install_postgres():
     command('sudo /usr/pgsql-10/bin/postgresql-10-setup initdb')
     command('sudo systemctl enable postgresql-10')
     command('sudo systemctl start postgresql-10')
+    configure_postgres()
 
 def configure_postgres():
     logger.info('Modify the pg_hba.conf file for "trust" access')
@@ -94,7 +96,6 @@ def configure_postgres():
     command('sudo systemctl restart postgresql-10') 
 
 def init_db():
-    configure_postgres()
     pwd = os.getcwd()    
     os.chdir(DB_SCRIPTS_PATH)
     for sql_path in SQL_SCRIPTS:
