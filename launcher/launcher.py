@@ -36,6 +36,19 @@ def install_tools():
     logger.info('Installing Maven')
     command('sudo yum -y install maven')
 
+def build_code(code_dir):
+    cwd = os.getcwd() 
+    os.chdir(code_dir) 
+    command('mvn -DskiptTests install')
+    os.chdir(cwd)
+
+def run_jar(jar_dir, jar_name, logs_dir):
+    cwd = os.getcwd() 
+    os.chdir(jar_dir)
+    command('java -Dspring.cloud.config.uri=http://localhost:%d -Dspring.cloud.config.label=master -jar %s >>%s/%s.log' % (CONFIG_SERVER_PORT, jar_name, logs_dir, jar_name))
+    os.chdir(cwd)
+
+
 def main():
     global logger
     init_logger(logger, 'logs/launcher.log', 10000000, 'info', 2)
@@ -50,6 +63,7 @@ def main():
     #load_ldap(COUNTRY_NAME)
     #run_hdfs()
     #install_config_repo(CONFIG_REPO)
+    #build_code() # TBD
     run_config_server(CONFIG_REPO, LOGS_DIR)
     logger.info('Install done')
 

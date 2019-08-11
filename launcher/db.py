@@ -66,7 +66,8 @@ SQL_SCRIPTS = [  # These are in a paritcular sequence
     'mosip_prereg/mosip_prereg_ddl_deploy.sql',
     'mosip_prereg/mosip_prereg_dml_deploy.sql',
 
-    #'mosip_reg/mosip_reg_db.sql',
+    # TODO: Some problem running these
+    #'mosip_reg/mosip_reg_db.sql', 
     #'mosip_reg/mosip_reg_ddl_deploy.sql',
     #'mosip_reg/mosip_reg_dml_deploy.sql',
 
