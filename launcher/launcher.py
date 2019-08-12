@@ -34,21 +34,19 @@ def install_tools():
     command('sudo pip3.6 install psutil')
 
 def install_environ():
-    '''
-    Clone MOSIP code before installing environment
-    '''
     logger.info('Installing environ')
     give_home_read_permissions() # For various access
+    clone_code()
     install_tools()
     install_docker()
     install_postgres()
-    run_hdfs()
     init_db()
+    run_hdfs()
     install_clamav()
     install_apacheds()
     load_ldap(COUNTRY_NAME)
     install_config_repo(CONFIG_REPO)
-    #run_config_server(CONFIG_REPO, LOGS_DIR)
+    run_config_server(CONFIG_REPO, LOGS_DIR)
     logger.info('Env install done')
 
 def clone_code(version, repos):

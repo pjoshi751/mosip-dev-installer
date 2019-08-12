@@ -4,7 +4,9 @@
 import os
 
 MOSIP_DIR = os.path.join(os.environ['HOME'], 'mosip')
-MOSIP_VERSION = '0.9.0'
+MOSIP_VERSION = '0.9.0'  # Such a tag should exist on the repo
+MOSIP_REPO = 'https://github.com/mosip/mosip-platform'
+
 CODE_DIR = os.path.join(MOSIP_DIR, 'mosip-platform')
 
 POSTGRES_PORT = 5432
