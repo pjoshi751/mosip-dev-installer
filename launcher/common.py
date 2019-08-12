@@ -1,6 +1,7 @@
 import subprocess
 import logging
 import os
+from config import *
 
 logger = logging.getLogger(__name__)
 
@@ -9,7 +10,8 @@ def command(cmd):
     if r.returncode != 0: 
         logger.error(r)
         
-def run_jar(jar_dir, jar_name, logs_dir, config_port, max_heap_size):
+def run_jar(jar_dir, jar_name, logs_dir, config_port, 
+            max_heap_size=JAVA_HEAP_SIZE):
     cwd = os.getcwd() 
     os.chdir(jar_dir)
     options = [

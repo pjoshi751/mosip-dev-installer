@@ -18,3 +18,7 @@ def install_clamav():
 def run_clamav():
     command('sudo freshclam')
     command('sudo systemctl start clamd@scan') 
+
+def restart_clamav():
+    logger.info('Restarting Clamav')
+    command('sudo systemctl restart clamd@scan') 
