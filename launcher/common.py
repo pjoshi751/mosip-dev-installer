@@ -10,6 +10,9 @@ def command(cmd):
     if r.returncode != 0: 
         logger.error(r)
         
+def get_jar_name(service, version):
+    return service + '-' + version + '.jar'
+
 def run_jar(jar_dir, jar_name, logs_dir, config_port, 
             max_heap_size=JAVA_HEAP_SIZE):
     cwd = os.getcwd() 

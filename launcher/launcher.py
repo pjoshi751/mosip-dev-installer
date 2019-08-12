@@ -9,6 +9,7 @@ import time
 import os
 import shutil
 import glob
+import psutil
 from logger import init_logger
 from db import *
 from config import *
@@ -30,11 +31,14 @@ def install_tools():
     command('sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm')
     logger.info('Installing Maven')
     command('sudo yum -y install maven')
+    command('sudo pip3.6 install psutil')
 
 def install_environ():
     '''
     Clone MOSIP code before installing environment
     '''
+    logger.info('Installing environ')
+    give_home_read_permissions() # For various access
     install_tools()
     install_docker()
     install_postgres()
@@ -44,9 +48,8 @@ def install_environ():
     install_apacheds()
     load_ldap(COUNTRY_NAME)
     install_config_repo(CONFIG_REPO)
-
-    #build_code() # TBD
     #run_config_server(CONFIG_REPO, LOGS_DIR)
+    logger.info('Env install done')
 
 def clone_code(version, repos):
     # TODO: Check out all repos
@@ -54,39 +57,49 @@ def clone_code(version, repos):
 
 def build_code(code_dir):
     #TODO: Check out code
+    logger.info('Building code')
     cwd = os.getcwd() 
     os.chdir(code_dir) 
     command('mvn -DskiptTests install')
     os.chdir(cwd)
+    logger.info('Building code done')
 
-def run_mosip_services(services, version):
+def start_mosip_services(services, version):
     '''
     Run all services given in the 'services' dict.  The location of the jar
     file is assumend to at $HOME/.m2/repository/io/mosip/module/service/version' 
     Args:
         services:  List of tuples [(module, service), (module, service) ..] 
     '''
-    
+    logger.info('Starting MOSIP services')    
     for module, service in services:
         jar_dir = '%s/.m2/repository/io/mosip/%s/%s/%s' % (os.environ['HOME'], 
             module, service, version)
-        jar_name = service + '-' + version + '.jar'
+        jar_name = get_jar_name(service, version)
         run_jar(jar_dir, jar_name, LOGS_DIR, CONFIG_SERVER_PORT)
 
-def stop_mosip_services(services):
+    logger.info('Starting MOSIP services - Done')    
+
+def stop_mosip_services(services, version):
     '''
     Stop all services given in the 'services' dict 
     Args:
         services:  Dict of form {service_name : service_dir}
     '''
-
-    pass
+    logger.info('Stopping MOSIP services')
+    for module, service in services: 
+        jar_name = get_jar_name(service, version)
+        for p in psutil.process_iter(): #TODO: Optimize 
+            pinfo = p.as_dict(attrs=['pid', 'cmdline'])
+            if jar_name in pinfo['cmdline']: 
+                p.kill() 
+    logger.info('Stopping MOSIP services - done')
 
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--install-environ', action='store_true', help='Install  all the environment needed. The services are run autumatically.  The DB, LDAP etc are  initialized too')   
     parser.add_argument('--build-code', action='store_true', help='mvn builds all the jars')
-    parser.add_argument('--run-services', action='store_true', help='Run all the services to bring up MOSIP')
+    parser.add_argument('--start-services', action='store_true', help='Run all the services to bring up MOSIP')
     parser.add_argument('--stop-services', action='store_true', help='Stop all running services')
 
     return parser
@@ -97,11 +110,17 @@ def main():
     init_logger(logger, 'logs/launcher.log', 10000000, 'info', 2)
 
     parser = parse_args()
+    args = parser.parse_args()
 
-    give_home_read_permissions() # For various access
-    run_mosip_services(MOSIP_SERVICES, MOSIP_VERSION)
-    logger.info('Install done')
-
+    if args.install_environ:
+        install_environ()
+    if args.build_code:
+        build_code()
+    if args.start_services:
+        start_mosip_services(MOSIP_SERVICES, MOSIP_VERSION)
+    if args.stop_services:
+        stop_mosip_services(MOSIP_SERVICES, MOSIP_VERSION)
+     
 if __name__== '__main__':
     main()
        
