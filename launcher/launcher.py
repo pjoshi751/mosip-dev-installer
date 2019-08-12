@@ -42,13 +42,6 @@ def build_code(code_dir):
     command('mvn -DskiptTests install')
     os.chdir(cwd)
 
-def run_jar(jar_dir, jar_name, logs_dir):
-    cwd = os.getcwd() 
-    os.chdir(jar_dir)
-    command('java -Dspring.cloud.config.uri=http://localhost:%d -Dspring.cloud.config.label=master -jar %s >>%s/%s.log' % (CONFIG_SERVER_PORT, jar_name, logs_dir, jar_name))
-    os.chdir(cwd)
-
-
 def main():
     global logger
     init_logger(logger, 'logs/launcher.log', 10000000, 'info', 2)
@@ -65,6 +58,9 @@ def main():
     #install_config_repo(CONFIG_REPO)
     #build_code() # TBD
     #run_config_server(CONFIG_REPO, LOGS_DIR)
+    #restart_apacheds()  # ldap
+    run_jar('/home/puneet/.m2/repository/io/mosip/kernel/kernel-auth-service/0.9.0', 'kernel-auth-service-0.9.0.jar', LOGS_DIR, 
+            CONFIG_SERVER_PORT, JAVA_HEAP_SIZE)
     logger.info('Install done')
 
 if __name__== '__main__':

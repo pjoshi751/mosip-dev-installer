@@ -12,3 +12,5 @@ CONFIG_SERVER_PORT = 8888 # Should be same as in application.properties of
 COUNTRY_NAME='morocco'  # For LDAP 
 CONFIG_REPO= os.path.join(MOSIP_DIR, 'myconfig')  # git repo 
 LOGS_DIR = os.path.join(MOSIP_DIR, 'mosip-launcher/launcher/logs')
+
+JAVA_HEAP_SIZE = '256m' 

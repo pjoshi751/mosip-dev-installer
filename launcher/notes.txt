@@ -2,3 +2,4 @@ Following error occuring while loading config.  The file is present, so not sure
 
  Properties location [classpath:application-${spring.profiles.active}.properties] not resolvable: class path resource [application-dev.properties] cannot be opened because it does not exist
 
+
