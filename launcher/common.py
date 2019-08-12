@@ -15,6 +15,7 @@ def get_jar_name(service, version):
 
 def run_jar(jar_dir, jar_name, logs_dir, config_port, 
             max_heap_size=JAVA_HEAP_SIZE):
+    logger.info('Running jar %s' % jar_name)
     cwd = os.getcwd() 
     os.chdir(jar_dir)
     options = [
@@ -23,8 +24,10 @@ def run_jar(jar_dir, jar_name, logs_dir, config_port,
         '-Dspring.profiles.active=dev',
         '-Xmx%s' % max_heap_size 
     ]
-    command('java %s -jar %s >>%s/%s.log 2>&1 &' % (' '.join(options), 
+    cmd = 'java %s -jar %s >>%s/%s.log 2>&1 &' % (' '.join(options), 
                                                     jar_name, logs_dir, 
-                                                    jar_name))
+                                                    jar_name)
+    logger.info('Command: %s' % cmd)
+    command(cmd)
     logger.info('%s run in background' % jar_name)
     os.chdir(cwd)
