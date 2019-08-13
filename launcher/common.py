@@ -32,3 +32,15 @@ def run_jar(jar_dir, jar_name, logs_dir, config_port,
     command(cmd)
     logger.info('%s run in background' % jar_name)
     os.chdir(cwd)
+
+def kill_process(search_str):
+    '''
+    Search a process whos command contains search_str and kill it.
+    The command line arguments of a command are concatenated into a string 
+    for easy searching. The char used for concatenation is unlikely char like
+    #.
+    '''
+    for p in psutil.process_iter():
+        pinfo = p.as_dict(attrs=['pid', 'cmdline'])
+        if search_str in '#'.join(pinfo['cmdline']):
+            p.kill()

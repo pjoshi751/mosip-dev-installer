@@ -47,11 +47,3 @@ def run_config_server(repo_path, logs_dir):
     os.chdir(cwd)
     return r 
 
-def kill_process(search_str):
-    '''
-    Search a process whos command contains search_str and kill it.
-    '''
-    for p in psutil.process_iter():
-        pinfo = p.as_dict(attrs=['pid', 'cmdline'])
-        if search_str in pinfo['cmdline']:
-            p.kill()
