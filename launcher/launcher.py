@@ -46,7 +46,6 @@ def install_environ():
     install_apacheds()
     load_ldap(COUNTRY_NAME)
     install_config_repo(CONFIG_REPO)
-    run_config_server(CONFIG_REPO, LOGS_DIR)
     logger.info('Env install done')
 
 def clone_code(version, repos):
@@ -58,7 +57,7 @@ def build_code(code_dir):
     logger.info('Building code')
     cwd = os.getcwd() 
     os.chdir(code_dir) 
-    command('mvn -DskiptTests install')
+    command('mvn -DskipTests install')
     os.chdir(cwd)
     logger.info('Building code done')
 
@@ -70,6 +69,13 @@ def start_mosip_services(services, version):
         services:  List of tuples [(module, service), (module, service) ..] 
     '''
     logger.info('Starting MOSIP services')    
+
+    logger.info('Running Config Server ..')
+    err = run_config_server(CONFIG_REPO, LOGS_DIR)
+    if err:
+        logger.error('Could not run config server. Exiting..')
+        return 1
+    logger.info('Running all services..')
     for module, service in services:
         jar_dir = '%s/.m2/repository/io/mosip/%s/%s/%s' % (os.environ['HOME'], 
             module, service, version)
@@ -77,6 +83,8 @@ def start_mosip_services(services, version):
         run_jar(jar_dir, jar_name, LOGS_DIR, CONFIG_SERVER_PORT)
 
     logger.info('Starting MOSIP services - Done')    
+
+    return 0
 
 def stop_mosip_services(services, version):
     '''
@@ -87,10 +95,11 @@ def stop_mosip_services(services, version):
     logger.info('Stopping MOSIP services')
     for module, service in services: 
         jar_name = get_jar_name(service, version)
-        for p in psutil.process_iter(): #TODO: Optimize 
-            pinfo = p.as_dict(attrs=['pid', 'cmdline'])
-            if jar_name in pinfo['cmdline']: 
-                p.kill() 
+        kill_process(jar_name)
+
+    logger.info('Stopping Config Server')
+    kill_process('spring.cloud.config.server.git.uri')
+
     logger.info('Stopping MOSIP services - done')
 
 def parse_args():
@@ -113,7 +122,7 @@ def main():
     if args.install_environ:
         install_environ()
     if args.build_code:
-        build_code()
+        build_code(CODE_DIR)
     if args.start_services:
         start_mosip_services(MOSIP_SERVICES, MOSIP_VERSION)
     if args.stop_services:

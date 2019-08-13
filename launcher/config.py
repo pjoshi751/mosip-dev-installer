@@ -98,6 +98,7 @@ SQL_SCRIPTS = [  # These are in a paritcular sequence
 
 MOSIP_SERVICES = [ 
     ('kernel', 'kernel-auth-service'),
-    ('kernel', 'kernel-uingenerator-service'),
-    ('kernel', 'kernel-emailnotification-service')
+    #('kernel', 'kernel-uingenerator-service'),
+    ('kernel', 'kernel-emailnotification-service'),
+    ('preregistration', 'pre-registration-login-service')
 ]
