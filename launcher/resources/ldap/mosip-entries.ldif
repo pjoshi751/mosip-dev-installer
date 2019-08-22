@@ -1,3 +1,4 @@
+version: 1
 
 dn: ou=division,c=morocco
 objectClass: organizationalUnit
