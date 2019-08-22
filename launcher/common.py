@@ -40,6 +40,7 @@ def kill_process(search_str):
     for easy searching. The char used for concatenation is unlikely char like
     #.
     '''
+    import psutil # Moved here in case module not found during launcher load 
     for p in psutil.process_iter():
         pinfo = p.as_dict(attrs=['pid', 'cmdline'])
         if search_str in '#'.join(pinfo['cmdline']):

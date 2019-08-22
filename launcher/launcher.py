@@ -2,6 +2,7 @@
 # Centos - Get the full DVD iso.  Custom select softwares - select GNU Desktop
 # version while installing in VM.  
 # The script has been tried on CentOS 7
+# TODO: Install gcc
 
 import subprocess
 import argparse
@@ -9,7 +10,6 @@ import time
 import os
 import shutil
 import glob
-import psutil
 from logger import init_logger
 from db import *
 from config import *
@@ -27,6 +27,7 @@ def give_home_read_permissions():
     command('chmod 755 %s' % os.environ['HOME']) 
 
 def install_tools():
+    #TODO Install python 3.6
     logger.info('Installing  EPEL')
     command('sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm')
     logger.info('Installing Maven')
@@ -36,7 +37,7 @@ def install_tools():
 def install_environ():
     logger.info('Installing environ')
     give_home_read_permissions() # For various access
-    clone_code()
+    #clone_code()
     install_tools()
     install_docker()
     install_postgres()
@@ -75,6 +76,7 @@ def start_mosip_services(services, version):
     if err:
         logger.error('Could not run config server. Exiting..')
         return 1
+    time.sleep(5)
     logger.info('Running all services..')
     for module, service in services:
         jar_dir = '%s/.m2/repository/io/mosip/%s/%s/%s' % (os.environ['HOME'], 
