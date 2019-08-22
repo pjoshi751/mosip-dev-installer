@@ -1,4 +1,3 @@
-version: 1
 
 dn: ou=division,c=morocco
 objectClass: organizationalUnit
@@ -464,6 +463,20 @@ mobile: 9989636932
 rid: 10001100010000220190510121450
 uid: pre_reg_client_user
 userPassword: {SSHA256}ct42TzwGaPAlv4lSOZP/4NOhz/MtmqeZhV5KiKGM1+K2yDEBU4QqSA==
+
+dn: uid=pre_reg_client_id,ou=people,c=morocco
+objectClass: userDetails
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: pre_reg_client_id
+sn: pre_reg_client_id
+mail: hello@xyz.com 
+mobile: 9989636932
+rid: 10001100010000220190510121415
+uid: pre_reg_client_id
+userPassword: {SSHA256}4uSI7K+RiX1xvqwliUM4mEFP7rFAg3KExpDfwmcHsmI=
 
 dn: uid=110025,ou=people,c=morocco
 objectClass: userDetails

@@ -29,12 +29,15 @@ def restart_apacheds():
 def install_apacheds(): 
     command('wget http://mirrors.estointernet.in/apache//directory/apacheds/dist/2.0.0.AM25/apacheds-2.0.0.AM25-64bit.bin')
     command('sudo ./apacheds-2.0.0.AM25-64bit.bin')
-    command('sudo yum install openldap-clients')
+    command('sudo yum -y install openldap-clients')
+    command('sudo yum -y install openldap-devel')
     restart_apacheds()
 
 def load_ldap(partition_name):
     create_partition(partition_name) 
-
+    load_data()
+   
+def load_data():
     logger.info('Loading with sample data')
     command('ldapmodify -h localhost -p 10389 -D "uid=admin,ou=system" -w "secret" -a -f ./resources/ldap/mosip-schema-extn.ldif')
     command('ldapmodify -h localhost -p 10389 -D "uid=admin,ou=system" -w "secret" -a -f ./resources/ldap/mosip-entries.ldif')
