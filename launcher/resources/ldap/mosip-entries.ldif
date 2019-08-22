@@ -148,7 +148,7 @@ mail: ramadurai.pandian@mindtree.com
 mobile: 9663175928
 rid: 100011000100002201905101214379
 uid: auth_server_id
-userPassword: {SSHA512}Uk3bqUreCtxk3Ov6rSYlwDoA3WOXD8wGplypbXumg//n2twYz8Z+P+lOojmTAZ+UNQ8K7Ou5IL0Yn+YFtLDPWO9On5+DWEz/
+userPassword: {SSHA256}4uSI7K+RiX1xvqwliUM4mEFP7rFAg3KExpDfwmcHsmI=
 
 dn: uid=admin,ou=people,c=morocco
 objectClass: userDetails
@@ -1048,7 +1048,7 @@ mail: idaappuser@mosip.io
 mobile: 9663175928
 rid: 100011000100002201905101214309
 uid: ida_app_user
-userPassword: {SSHA256}lbbSHb8JBVd2To/J1TuDcjW1bLuzQeyJPe30grU3PHyqaUT+VWCiqw==
+userPassword: {SSHA256}4uSI7K+RiX1xvqwliUM4mEFP7rFAg3KExpDfwmcHsmI=
 
 dn: uid=ritesh09,ou=people,c=morocco
 objectClass: userDetails
