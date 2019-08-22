@@ -17,7 +17,7 @@ ou: roles
 
 #---------------------
 # People
-#---------------------
+#----------------------
 
 dn: uid=auth_server_id1,ou=people,c=morocco
 objectClass: userDetails

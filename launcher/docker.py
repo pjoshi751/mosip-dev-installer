@@ -10,3 +10,7 @@ def install_docker():
     command('curl -fsSL https://get.docker.com/ | sh')
     command('sudo systemctl start docker')
     command('sudo systemctl enable docker')
+
+def restart_docker():
+    logger.info('Restarting Docker')
+    command('sudo systemctl restart docker')

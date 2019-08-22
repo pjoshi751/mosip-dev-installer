@@ -50,6 +50,13 @@ def install_environ():
     install_config_repo(CONFIG_REPO)
     logger.info('Env install done')
 
+def start_environ():
+    restart_docker() 
+    restart_postgres()
+    restart_apacheds()
+    restart_clamav()
+    run_hdfs()
+
 def clone_code(version, repos):
     # TODO: Check out all repos
     pass 
@@ -108,6 +115,7 @@ def stop_mosip_services(services, version):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--install-environ', action='store_true', help='Install  all the environment needed. The services are run autumatically.  The DB, LDAP etc are  initialized too')   
+    parser.add_argument('--start-environ', action='store_true', help='Restart  all environment daemons. This assumes that environ has already been setup.')   
     parser.add_argument('--build-code', action='store_true', help='mvn builds all the jars')
     parser.add_argument('--start-services', action='store_true', help='Run all the services to bring up MOSIP')
     parser.add_argument('--stop-services', action='store_true', help='Stop all running services')
@@ -124,6 +132,8 @@ def main():
 
     if args.install_environ:
         install_environ()
+    if args.start_environ:
+        start_environ()
     if args.build_code:
         build_code(CODE_DIR)
     if args.start_services:
