@@ -32,8 +32,11 @@ def install_tools():
     logger.info('Installing  EPEL')
     command('sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm')
     logger.info('Installing Maven')
-    command('sudo yum -y install maven')
+    command('sudo yum install -y maven')
+    command('sudo yum install -y postgresql-devel')
+    command('sudo yum install -y python-devel')
     command('sudo pip3.6 install psutil')
+    command('sudo pip3.6 install psycopg2')
 
 def install_environ():
     logger.info('Installing environ')

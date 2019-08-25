@@ -101,6 +101,7 @@ MOSIP_SERVICES = [
     ('kernel', 'kernel-keymanager-service'),
     ('kernel', 'kernel-otpmanager-service'),
     ('kernel', 'kernel-emailnotification-service'),
+    ('kernel', 'kernel-masterdata-service'),
     ('preregistration', 'pre-registration-login-service'),
     ('preregistration', 'pre-registration-notification-service'),
     ('preregistration', 'pre-registration-demographic-service')

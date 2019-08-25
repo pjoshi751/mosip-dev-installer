@@ -14,4 +14,6 @@ PIN is 1234
 
 -- Delete all entires of key_alias table under mosip_kernel
    Do the above whenever key manager is being restarted.
+$ \c mosip_kernel
+$ delete from key_alias;
 
