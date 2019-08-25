@@ -74,6 +74,13 @@ def build_code(code_dir):
     os.chdir(cwd)
     logger.info('Building code done')
 
+def init_and_cleanup():
+    '''
+    Before starting the services, perform cleanup for a fresh start.
+    '''
+    logger.info('Cleanup ..')
+    clean_table('mosip_kernel', 'key_alias') 
+
 def start_services(services, version):
     '''
     Run all services given in the 'services' dict.  The location of the jar
@@ -82,6 +89,8 @@ def start_services(services, version):
         services:  List of tuples [(module, service), (module, service) ..] 
     '''
     logger.info('Starting MOSIP services')    
+
+    init_and_cleanup()
 
     logger.info('Running Config Server ..')
     err = run_config_server(CONFIG_REPO, LOGS_DIR)
