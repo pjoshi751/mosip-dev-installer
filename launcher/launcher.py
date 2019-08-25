@@ -47,6 +47,7 @@ def install_environ():
     install_clamav()
     install_apacheds()
     load_ldap(COUNTRY_NAME)
+    #TODO: Install SoftHSM as per notes.txt
     install_config_repo(CONFIG_REPO)
     logger.info('Env install done')
 
@@ -70,7 +71,7 @@ def build_code(code_dir):
     os.chdir(cwd)
     logger.info('Building code done')
 
-def start_mosip_services(services, version):
+def start_services(services, version):
     '''
     Run all services given in the 'services' dict.  The location of the jar
     file is assumend to at $HOME/.m2/repository/io/mosip/module/service/version' 
@@ -96,7 +97,7 @@ def start_mosip_services(services, version):
 
     return 0
 
-def stop_mosip_services(services, version):
+def stop_services(services, version):
     '''
     Stop all services given in the 'services' dict 
     Args:
@@ -137,9 +138,9 @@ def main():
     if args.build_code:
         build_code(CODE_DIR)
     if args.start_services:
-        start_mosip_services(MOSIP_SERVICES, MOSIP_VERSION)
+        start_services(MOSIP_SERVICES, MOSIP_VERSION)
     if args.stop_services:
-        stop_mosip_services(MOSIP_SERVICES, MOSIP_VERSION)
+        stop_services(MOSIP_SERVICES, MOSIP_VERSION)
      
 if __name__== '__main__':
     main()
