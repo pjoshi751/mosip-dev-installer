@@ -17,7 +17,7 @@ def install_config_repo(repo_path):
     cwd = os.getcwd() 
     os.chdir(repo_path)
     command('git init') 
-    files = glob.glob(os.path.join(cwd, '../config/configs/*')) 
+    files = glob.glob(os.path.join(cwd, '../config_server/mosip_configs/*')) 
     for f in files:
         shutil.copy(f, '.')
     command('git add .')
