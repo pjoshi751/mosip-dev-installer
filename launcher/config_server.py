@@ -27,7 +27,7 @@ def install_config_repo(repo_path):
 def run_config_server(repo_path, logs_dir):
     logger.info('Running config server')
     cwd = os.getcwd() 
-    os.chdir('../config/config-server')  
+    os.chdir('../config_server/spring_config_server')  
     log_file = '%s/config_server.log' % logs_dir
     command('mvn -Dspring.cloud.config.server.git.uri=%s spring-boot:run >> %s 2>&1 &' % (repo_path, log_file))
     time.sleep(2) 
