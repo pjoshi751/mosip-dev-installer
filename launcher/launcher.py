@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3.6
+#!/usr/bin/python3.6
 # Centos - Get the full DVD iso.  Custom select softwares - select GNU Desktop
 # version while installing in VM.  
 # The script has been tried on CentOS 7
