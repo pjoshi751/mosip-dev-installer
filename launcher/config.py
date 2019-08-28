@@ -18,7 +18,7 @@ PG_CONF_DIR = '/var/lib/pgsql/10/data'  # Postgres
 
 CONFIG_SERVER_PORT = 8888 # Should be same as in application.properties of 
                           # config-server
-COUNTRY_NAME='morocco'  # For LDAP 
+COUNTRY_NAME='mycountry'  # For LDAP 
 
 # Local repo where all config files of MOSIP will be fetched by config server.
 CONFIG_REPO= os.path.join(MOSIP_DIR, 'myconfig')  # git repo 
