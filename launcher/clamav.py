@@ -14,6 +14,7 @@ def install_clamav():
     command('echo "LocalSocket /var/run/clamd.scan/clamd.sock" | sudo tee -a /etc/clamd.d/scan.conf')
     command('sudo sed -i -e "s/^Example/#Example/" /etc/freshclam.conf')
     command('sudo systemctl enable clamd@scan') 
+    run_clamav()
 
 def run_clamav():
     command('sudo freshclam')

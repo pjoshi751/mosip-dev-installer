@@ -16,9 +16,10 @@ def run_hdfs():
                              shell=True, stdout=subprocess.PIPE)
     while 1:
         s = proc.stdout.readline().decode() # bytes -> str
-        if len(s) == 0: # No running container with this  name
+        if len(s) == 0: # No running container with this name
             break
         if cname in s: 
+            logger.info('Container already running')
             container_id = s.split()[0]
             return 
          
@@ -28,7 +29,6 @@ def run_hdfs():
     proc = subprocess.Popen('docker attach %s' % container_id, stdout=subprocess.PIPE, shell=True)
     while 1: 
         s = proc.stdout.readline().decode() # bytes -> str
-        logger.info(s)
         if s.find('starting nodemanager') != -1: 
             break
         time.sleep(1) 

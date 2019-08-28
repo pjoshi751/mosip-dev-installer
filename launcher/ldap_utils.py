@@ -28,6 +28,8 @@ def restart_apacheds():
 
 def install_apacheds(): 
     command('wget http://mirrors.estointernet.in/apache//directory/apacheds/dist/2.0.0.AM25/apacheds-2.0.0.AM25-64bit.bin')
+    command('chmod 755 apacheds-2.0.0.AM25-64bit.bin')
+    command('sudo useradd -M apacheds') 
     command('sudo ./apacheds-2.0.0.AM25-64bit.bin')
     command('sudo yum -y install openldap-clients')
     command('sudo yum -y install openldap-devel')
@@ -55,3 +57,4 @@ def create_partition(partition_name):
     f.write(s) 
     f.close()
     command('ldapmodify -h localhost -p 10389 -D "uid=admin,ou=system" -w "secret" -a -f %s' % ldif)
+    restart_apacheds()

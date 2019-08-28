@@ -16,6 +16,7 @@ def install_softhsm(install_dir, config_dir):
     os.chdir(install_dir)     
     command('sudo yum install -y automake autoconf libtool libtool-ltdl-devel pkg-config')
     command('git clone https://github.com/opendnssec/SoftHSMv2')
+    os.chdir('SoftHSMv2')
     command('sh autogen.sh')
     command('./configure')
     command('make')
@@ -23,7 +24,7 @@ def install_softhsm(install_dir, config_dir):
     os.chdir(cwd)  # Back to launcher directory
 
     os.makedirs(config_dir, exist_ok=True)
-    shutil.copy('resources/sofhsm_mosip.conf', config_dir)     
+    shutil.copy('resources/softhsm_mosip.conf', config_dir)     
 
 def init_softhsm(pin):
     '''

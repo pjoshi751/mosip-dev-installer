@@ -33,6 +33,8 @@ def install_tools():
     command('sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm')
     logger.info('Installing Maven')
     command('sudo yum install -y maven')
+    command('sudo yum install -y gcc')
+    command('sudo yum install -y gcc-c++')
     command('sudo yum install -y postgresql-devel')
     command('sudo yum install -y python-devel')
     command('sudo pip3.6 install psutil')
@@ -40,19 +42,19 @@ def install_tools():
 
 def install_environ():
     logger.info('Installing environ')
-    give_home_read_permissions() # For various access
+    #give_home_read_permissions() # For various access
     #clone_code()
-    install_tools()
-    install_docker()
-    install_postgres()
-    init_db()
-    run_hdfs()
-    install_clamav()
-    install_apacheds()
-    load_ldap(COUNTRY_NAME)
+    #install_tools()
+    #install_docker()
+    #install_postgres()
+    #init_db(DB_SCRIPTS_PATH, SQL_SCRIPTS)
+    #run_hdfs()
+    #install_clamav()
+    #install_apacheds()
+    #load_ldap(COUNTRY_NAME)
     install_softhsm(SOFTHSM_INSTALL_DIR, SOFTHSM_CONFIG_DIR) 
-    init_softhsm(SOFTHSM_PIN)
-    install_config_repo(CONFIG_REPO)
+    #install_config_repo(CONFIG_REPO)
+    #init_softhsm(SOFTHSM_PIN)
     logger.info('Env install done')
 
 def start_environ():

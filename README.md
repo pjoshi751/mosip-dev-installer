@@ -9,7 +9,7 @@
     spring.mail.username=<user email id>
     spring.mail.password=<password>
    
-- Inspect config.py for any changes. Esp following:
+- Inspect launcher/config.py for any changes. Esp following:
   COUNTRY_NAME 
 - cd launcher
 - First install environment, then run the services 
