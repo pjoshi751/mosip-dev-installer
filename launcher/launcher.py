@@ -86,10 +86,10 @@ def init_and_cleanup():
 
 def start_services(services, version):
     '''
-    Run all services given in the 'services' dict.  The location of the jar
-    file is assumend to at $HOME/.m2/repository/io/mosip/module/service/version' 
+    The location of the jar file is assumend to at $HOME/.m2/repository/io/mosip/module/service/version' 
     Args:
         services:  List of tuples [(module, service), (module, service) ..] 
+        version: Assumed all services have same version specified in pom.xml.
     '''
     logger.info('Starting MOSIP services')    
 
