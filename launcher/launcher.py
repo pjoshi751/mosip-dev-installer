@@ -9,7 +9,6 @@ import subprocess
 import argparse
 import time
 import os
-import shutil
 import glob
 from logger import init_logger
 from db import *
@@ -19,6 +18,7 @@ from ldap_utils import *
 from hdfs import *
 from clamav import *
 from docker import *
+from softhsm import *
 from config_server import *
 
 logger = logging.getLogger() # Root Logger 
@@ -50,7 +50,8 @@ def install_environ():
     install_clamav()
     install_apacheds()
     load_ldap(COUNTRY_NAME)
-    #TODO: Install SoftHSM as per notes.txt
+    install_softhsm(SOFTHSM_INSTALL_DIR, SOFTHSM_CONFIG_DIR) 
+    init_softhsm(SOFTHSM_PIN)
     install_config_repo(CONFIG_REPO)
     logger.info('Env install done')
 
