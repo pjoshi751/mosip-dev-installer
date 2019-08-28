@@ -18,7 +18,7 @@ def install_postgres():
 
 def restart_postgres():
     logger.info('Restarting Postgres')
-    command('sudo systemctl start postgresql-10')
+    command('sudo systemctl restart postgresql-10')
 
 def configure_postgres():
     logger.info('Modify the pg_hba.conf file for "trust" access')

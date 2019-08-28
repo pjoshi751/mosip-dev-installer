@@ -42,19 +42,19 @@ def install_tools():
 
 def install_environ():
     logger.info('Installing environ')
-    #give_home_read_permissions() # For various access
-    #clone_code()
-    #install_tools()
-    #install_docker()
-    #install_postgres()
-    #init_db(DB_SCRIPTS_PATH, SQL_SCRIPTS)
-    #run_hdfs()
-    #install_clamav()
-    #install_apacheds()
-    #load_ldap(COUNTRY_NAME)
+    give_home_read_permissions() # For various access
+    clone_code()
+    install_tools()
+    install_docker()
+    install_postgres()
+    init_db(DB_SCRIPTS_PATH, SQL_SCRIPTS)
+    run_hdfs()
+    install_clamav()
+    install_apacheds()
+    load_ldap(COUNTRY_NAME)
     install_softhsm(SOFTHSM_INSTALL_DIR, SOFTHSM_CONFIG_DIR) 
-    #install_config_repo(CONFIG_REPO)
-    #init_softhsm(SOFTHSM_PIN)
+    init_softhsm(SOFTHSM_PIN)
+    install_config_repo(CONFIG_REPO)
     logger.info('Env install done')
 
 def start_environ():
