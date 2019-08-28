@@ -31,6 +31,6 @@ def init_softhsm(pin):
     pin should be same as what is defined in kernel.properties file
     '''
     logger.info('Initialize softhsm with key')
-    command("softhsm2-util --init-token --slot 0 --pin %s --so-pin %s --label 'Keymanager_token'" %  pin)
+    command("softhsm2-util --init-token --slot 0 --pin %s --so-pin %s --label 'Keymanager_token'" %  (pin, pin))
 
 

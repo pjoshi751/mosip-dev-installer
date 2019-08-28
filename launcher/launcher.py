@@ -1,4 +1,4 @@
-#!/usr/bin/python3.6
+#!/usr/local/bin/python3.6
 # Centos - Get the full DVD iso.  Custom select softwares - select GNU Desktop
 # version while installing in VM.  
 # The script has been tried on CentOS 7
@@ -43,7 +43,6 @@ def install_tools():
 def install_environ():
     logger.info('Installing environ')
     give_home_read_permissions() # For various access
-    clone_code()
     install_tools()
     install_docker()
     install_postgres()
