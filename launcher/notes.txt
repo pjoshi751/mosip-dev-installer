@@ -17,3 +17,7 @@ PIN is 1234
 $ \c mosip_kernel
 $ delete from key_alias;
 
+
+To get in PSQL
+$ sudo su postgres
+$ psql
