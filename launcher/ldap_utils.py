@@ -26,7 +26,7 @@ def create_context_entry(partition_name):
 
 def restart_apacheds():
     command('sudo /opt/apacheds-2.0.0.AM25/bin/apacheds restart default')
-    time.sleep(5.0)  # Need to wait for server to start. TODO make this better
+    time.sleep(10.0)  # Need to wait for server to start. TODO make this better
 
 def install_apacheds(): 
     command('wget http://mirrors.estointernet.in/apache//directory/apacheds/dist/2.0.0.AM25/apacheds-2.0.0.AM25-64bit.bin')

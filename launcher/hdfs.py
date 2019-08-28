@@ -12,7 +12,8 @@ def run_hdfs():
     logger.info('Running HDFS docker container')
     # Check if container already running
     cname = 'mosip_hdfs' # Container name
-    proc = subprocess.Popen('docker ps --filter name=%s' % cname, 
+    # TODO: Should not really use sudo for this
+    proc = subprocess.Popen('sudo docker ps --filter name=%s' % cname, 
                              shell=True, stdout=subprocess.PIPE)
     while 1:
         s = proc.stdout.readline().decode() # bytes -> str
@@ -23,10 +24,10 @@ def run_hdfs():
             container_id = s.split()[0]
             return 
          
-    proc = subprocess.Popen('docker run --name %s -d sequenceiq/hadoop-docker:2.7.0' % cname, shell=True, stdout=subprocess.PIPE)
+    proc = subprocess.Popen('sudo docker run --name %s -d sequenceiq/hadoop-docker:2.7.0' % cname, shell=True, stdout=subprocess.PIPE)
     container_id = proc.stdout.readline().strip()
     container_id = container_id.decode() # bytes -> str
-    proc = subprocess.Popen('docker attach %s' % container_id, stdout=subprocess.PIPE, shell=True)
+    proc = subprocess.Popen('sudo docker attach %s' % container_id, stdout=subprocess.PIPE, shell=True)
     while 1: 
         s = proc.stdout.readline().decode() # bytes -> str
         if s.find('starting nodemanager') != -1: 
@@ -37,5 +38,5 @@ def run_hdfs():
 
 def stop_hdfs(container_id):
     logger.info('Stopping HDFS docker container')
-    command('docker container stop %s' % container_id)
+    command('sudo docker container stop %s' % container_id)
 
