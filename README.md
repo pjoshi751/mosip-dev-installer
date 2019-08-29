@@ -27,7 +27,7 @@ The scripts here enable a developer to run MOSIP modules on a single machine wit
 `$ cd mosip-platform`  
 `$ git checkout 0.9.0_phil`  
 - Run installer as below:  
-`$ cd $HOME/mosip/mosip-dev-installer/launcher`
+`$ cd $HOME/mosip/mosip-dev-installer/launcher`  
 `$ ./launcher --help`  
 `$ ./launcher --install-environ` (one time)  
 `$ ./launcher --build-code`  
