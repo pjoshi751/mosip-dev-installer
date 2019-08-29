@@ -1,6 +1,6 @@
 # MOSIP Developer Installer
 
-The scripts here enable a developer to run MOSIP modules on a single machine with very low memory configuration.  The scripts here are to be used for develpment purposes only - not for production or sandbox deployment.
+The scripts here enable a developer to run MOSIP modules on a single machine with very low memory configuration.  The module Jars are run directly without any containerization.  
 
 ## Running the Installer
 
