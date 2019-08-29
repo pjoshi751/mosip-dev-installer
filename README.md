@@ -16,7 +16,7 @@ https://www.rosehosting.com/blog/how-to-install-python-3-6-4-on-centos-7/
 - Create `mosip` directory in home directory
 - `$ cd $HOME/mosip`
 - Clone this repo  
-`$ git clone https://github.com/pjoshi751/mosip-launcher.git`
+`$ git clone https://github.com/pjoshi751/mosip-dev-installer.git`
 - Modify `config_server/mosip_configs/kernel.properties` to add your Gmail account SMTP credentials in the following fields:  
 `spring.mail.username=<user email id>
  spring.mail.password=<password>`
@@ -25,8 +25,8 @@ https://www.rosehosting.com/blog/how-to-install-python-3-6-4-on-centos-7/
 `$ git clone https://github.com/mosip/mosip-platform.git`    
 `$ cd mosip-platform`  
 `$ git checkout 0.9.0_phil`  
-- `$ cd $HOME/mosip/mosip-launcher/launcher`
-- Run launcher as below:  
+- `$ cd $HOME/mosip/mosip-dev-installer/launcher`
+- Run installer as below:  
 `$ ./launcher --help`  
 `$ ./launcher --install-environ` (one time)  
 `$ ./launcher --build-code`  

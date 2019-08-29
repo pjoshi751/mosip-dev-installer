@@ -22,7 +22,7 @@ COUNTRY_NAME='mycountry'  # For LDAP
 
 # Local repo where all config files of MOSIP will be fetched by config server.
 CONFIG_REPO= os.path.join(MOSIP_DIR, 'myconfig')  # git repo 
-LOGS_DIR = os.path.join(MOSIP_DIR, 'mosip-launcher/launcher/logs')
+LOGS_DIR = os.path.join(MOSIP_DIR, 'mosip-dev-installer/launcher/logs')
 
 JAVA_HEAP_SIZE = '256m' 
 
