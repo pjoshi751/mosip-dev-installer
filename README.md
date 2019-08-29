@@ -43,4 +43,6 @@ http://directory.apache.org/studio/download/download-linux.html
 ## Notes
 - config server runs on port 8888 by default.  It may conflict with some services. TODO: Change the port.
 
+## License
+This project is licensed under the terms of [Mozilla Public License 2.0](https://github.com/pjoshi751/mosip-dev-installer/blob/master/LICENSE)
 
