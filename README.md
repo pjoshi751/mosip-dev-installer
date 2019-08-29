@@ -9,14 +9,15 @@ The scripts here enable a developer to run MOSIP modules on a single machine wit
 - Make sure network is enabled on the VM.
 - Create a new user, login as this user.
 - Add current user to `/etc/sudoers` file 
-- Install gcc, git  
-`$ sudo yum install gcc git`
-- Install python 3.6 as given here:  
-https://www.rosehosting.com/blog/how-to-install-python-3-6-4-on-centos-7/
+- Install gi 
+`$ sudo yum install git`
 - Create `mosip` directory in home directory
 - `$ cd $HOME/mosip`
 - Clone this repo  
 `$ git clone https://github.com/pjoshi751/mosip-dev-installer.git`
+- Install Python3.6 and other tools:
+`$ cd mosip-dev-installer`  
+`$ sh prerequisites.sh`
 - Modify `config_server/mosip_configs/kernel.properties` to add your Gmail account SMTP credentials in the following fields:  
 `spring.mail.username=<user email id>
  spring.mail.password=<password>`
