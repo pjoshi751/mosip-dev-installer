@@ -26,8 +26,8 @@ The scripts here enable a developer to run MOSIP modules on a single machine wit
 `$ git clone https://github.com/mosip/mosip-platform.git`    
 `$ cd mosip-platform`  
 `$ git checkout 0.9.0_phil`  
-- `$ cd $HOME/mosip/mosip-dev-installer/launcher`
 - Run installer as below:  
+`$ cd $HOME/mosip/mosip-dev-installer/launcher`
 `$ ./launcher --help`  
 `$ ./launcher --install-environ` (one time)  
 `$ ./launcher --build-code`  
@@ -36,10 +36,10 @@ The scripts here enable a developer to run MOSIP modules on a single machine wit
 - Once all services are up, run a test api under `launcher/test/api_test.py`. For the OTP email test, you will have to allow Google to receive emails from apps (lesser security setting).
 
 
-## LDAP tool (for Debugging)
-- Download and install Apache Studio DS
+## LDAP UI tool
+- For inspecting contents of LDAP, download and install Apache Studio DS
 http://directory.apache.org/studio/download/download-linux.html
-- host: localhost, port = 10389, Simple Authentication, Bind DN = "uid=admin,ou=system", Bind password = "secret"
+- Create a new connection with following params: host = localhost, port = 10389, Simple Authentication, Bind DN = "uid=admin,ou=system", Bind password = "secret"
 
 ## Notes
 - config server runs on port 8888 by default.  It may conflict with some services. TODO: Change the port.
