@@ -8,12 +8,12 @@ The scripts here enable a developer to run MOSIP modules on a single machine wit
 - Create a new VM with CentOS 7. The installer was tested with CentOS-7-x86_64-DVD-1810.iso with 8GB RAM, 2 CPU configuration.
 - Make sure network is enabled on the VM.
 - Create a new user, login as this user.
-- Add current user to `/etc/sudoers` file 
-- Install gi 
+- Add current user to `/etc/sudoers` file.     
+- Install git:  
 `$ sudo yum install git`
-- Create `mosip` directory in home directory
+- Create `mosip` directory in home directory.
 - `$ cd $HOME/mosip`
-- Clone this repo  
+- Clone this repo:    
 `$ git clone https://github.com/pjoshi751/mosip-dev-installer.git`
 - Install Python3.6 and other tools:
 `$ cd mosip-dev-installer`  
