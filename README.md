@@ -31,7 +31,8 @@ The scripts here enable a developer to run MOSIP modules on a single machine wit
 `$ ./launcher --install-environ` (one time)  
 `$ ./launcher --build-code`  
 `$ ./launcher --start-services`  
-- Monitor the logs under `launcher/logs` dir for any errors.
+- Monitor the logs under `launcher/logs` dir for any errors.  
+`$ grep ERROR *`
 - Once all services are up, run a test api under `launcher/test/api_test.py`. For the OTP email test, you will have to allow Google to receive emails from apps (lesser security setting).  
 `$ cd launcher/test/`  
 `$ python3.6 api_test.py`  
